@@ -1,19 +1,15 @@
 import { CurrencyEnum } from "../enums/CurrencyEnum";
+import ICard from "../interfaces/ICard";
 import Transaction from "./Transaction";
 
-export default class Card {
+export default class Card implements ICard {
   constructor(public transactions: Transaction[]) {}
 
-  addTransaction(transaction: Transaction): string;
-  addTransaction(currency: CurrencyEnum, amount: number): string;
   addTransaction(val1: any, val2?: any): string {
-    let newTransaction: Transaction;
-
-    if (val1 && val2) {
-      newTransaction = new Transaction(val2,val1);
-    } else {
-      newTransaction = val1;
-    }
+    let isData: boolean = val1 && val2;
+    let newTransaction: Transaction = isData
+      ? new Transaction(val2, val1)
+      : val1;
     this.transactions.push(newTransaction);
     return newTransaction.id;
   }
