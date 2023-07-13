@@ -1,11 +1,12 @@
+import { CurrencyEnum } from "../enums/CurrencyEnum";
 import Card from "./Card";
 import Transaction from "./Transaction";
 
 export default class BonusCard extends Card {
-  constructor(public transactions: Transaction[]) {
+  constructor(protected transactions: Transaction[]) {
     super(transactions);
   }
-  addTransaction(val1: any, val2?: any): string {
+  addTransaction(val1: Transaction|CurrencyEnum, val2?: number): string {
     const createTransactionId = super.addTransaction(val1, val2);
     const findTransaction = this.getTrasaction(createTransactionId);
 

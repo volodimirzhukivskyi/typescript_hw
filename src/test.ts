@@ -12,7 +12,7 @@ const transaction5 = new Transaction(200, CurrencyEnum.USD);
 
 const card1 = new Card([transaction1,transaction2]);
 const card2 = new Card([transaction3]);
-// First hw 
+// First hw
 // console.log(card.addTransaction(CurrencyEnum.USD,24));
 // console.log(card.addTransaction(transaction3));
 // console.log(card.getTrasaction(transaction2.id));
@@ -28,7 +28,6 @@ console.log(pocket.getCard("defaultValueCard0"));
 console.log(pocket.getTotalAmount(CurrencyEnum.USD));
 console.log(pocket.removeCard("bonusCard"));
 console.log(pocket);
-
 
 
 
