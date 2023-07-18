@@ -1,4 +1,4 @@
-import Transaction from "../classes/Transaction";
+import Transaction from "../classes/transaction/Transaction";
 import { CurrencyEnum } from "../enums/CurrencyEnum";
 
 export default interface ICard {

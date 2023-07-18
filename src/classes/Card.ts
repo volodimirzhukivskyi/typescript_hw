@@ -1,6 +1,6 @@
 import { CurrencyEnum } from "../enums/CurrencyEnum";
 import ICard from "../interfaces/ICard";
-import Transaction from "./Transaction";
+import Transaction from "./transaction/Transaction";
 
 export default class Card implements ICard {
   constructor(protected transactions: Transaction[]) {}
@@ -11,7 +11,7 @@ export default class Card implements ICard {
       newTransaction = val1;
     } else if (val2) {
       newTransaction = new Transaction(val2, val1);
-    }else{
+    } else {
       throw new Error("Error create transaction");
     }
 

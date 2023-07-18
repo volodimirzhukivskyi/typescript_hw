@@ -2,10 +2,15 @@ import { CurrencyEnum } from "../enums/CurrencyEnum";
 import ICard from "../interfaces/ICard";
 
 export default class Pocket {
-  cardsMap: Map<string, ICard>;
+  private cardsMap: Map<string, ICard> = new Map<string, ICard>();
+  private static instance: Pocket;
+  private constructor() {}
 
-  constructor(private readonly cardsUser: ICard[]) {
-    this.cardsMap = this.setAllCards(cardsUser);
+  static getInstance(): Pocket {
+    if (!Pocket.instance) {
+      Pocket.instance = new Pocket();
+    }
+    return Pocket.instance;
   }
   setAllCards(cards: ICard[]): Map<string, ICard> {
     let map = new Map();
