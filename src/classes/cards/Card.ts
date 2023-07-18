@@ -1,9 +1,9 @@
-import { CurrencyEnum } from "../enums/CurrencyEnum";
-import ICard from "../interfaces/ICard";
-import Transaction from "./transaction/Transaction";
+import { CurrencyEnum } from "../../enums/CurrencyEnum";
+import ICard from "../../interfaces/ICard";
+import Transaction from "../transaction/Transaction";
 
 export default class Card implements ICard {
-  constructor(protected transactions: Transaction[]) {}
+  #transactions: Transaction[] = [];
 
   addTransaction(val1: Transaction | CurrencyEnum, val2?: number): string {
     let newTransaction: Transaction;
@@ -15,15 +15,20 @@ export default class Card implements ICard {
       throw new Error("Error create transaction");
     }
 
-    this.transactions.push(newTransaction);
+    this.#transactions.push(newTransaction);
     return newTransaction.id;
   }
-
+  revert() {
+    this.#transactions.pop();
+  }
+  getLastTransaction() {
+    return this.#transactions[this.#transactions.length - 1];
+  }
   getTrasaction(id: string): Transaction | undefined {
-    return this.transactions.find((el) => el.id === id);
+    return this.#transactions.find((el) => el.id === id);
   }
   getBalance(getCurrency: CurrencyEnum): number {
-    return this.transactions.reduce((prev, current) => {
+    return this.#transactions.reduce((prev, current) => {
       const { currency, amount } = current;
       return currency === getCurrency ? prev + amount : prev;
     }, 0);

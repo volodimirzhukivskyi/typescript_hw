@@ -1,3 +1,0 @@
-interface Itransaction{
-    amountLabel():string;
-}

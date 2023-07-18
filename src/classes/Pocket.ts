@@ -3,14 +3,14 @@ import ICard from "../interfaces/ICard";
 
 export default class Pocket {
   private cardsMap: Map<string, ICard> = new Map<string, ICard>();
-  private static instance: Pocket;
+  static  #instance: Pocket;
   private constructor() {}
 
   static getInstance(): Pocket {
-    if (!Pocket.instance) {
-      Pocket.instance = new Pocket();
+    if (!Pocket.#instance) {
+      Pocket.#instance = new Pocket();
     }
-    return Pocket.instance;
+    return Pocket.#instance;
   }
   setAllCards(cards: ICard[]): Map<string, ICard> {
     let map = new Map();

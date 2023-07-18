@@ -1,5 +1,6 @@
 import { CurrencyEnum } from "../../enums/CurrencyEnum";
 import { generateUid } from "../../helpers/helpers";
+import Itransaction from "./interface/Itransaction";
 
 export default class Transaction implements Itransaction {
   public id: string;
@@ -7,7 +8,7 @@ export default class Transaction implements Itransaction {
     this.id = generateUid();
   }
   amountLabel(): string {
-    throw new Error("Method not implemented.");
+    return `${this.amount}${this.currency}`
   }
 
 }
